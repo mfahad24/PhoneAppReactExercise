@@ -5,6 +5,10 @@ import "./Phone.css";
 // import Image from "../images/phoneimage.jfif";
 
 class Phone extends Component {
+  randomizeStrengthValue() {
+    return Math.round(Math.random() * 5);
+  }
+
   renderButton() {
     return (
       <div>
