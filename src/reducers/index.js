@@ -10,10 +10,12 @@ import { CHANGE_CONNECTED_VALUE, CHANGE_SIGNAL_STRENGTH } from "../constants";
 //   ];
 // };
 
-const signalStrengthValue = (signalStrength = null, action) => {
+const signalStrength = (signalStrength = null, action) => {
   if (action.type === CHANGE_SIGNAL_STRENGTH) {
+    // console.log("CHANGE SIGNAL");
     return action.payload;
   } else {
+    // console.log("RETURN ORIGINAL");
     return signalStrength;
   }
 };
@@ -30,6 +32,6 @@ const connectedValue = (connectVal = 0, action) => {
 
 export default combineReducers({
   //   appPhone: appPhone,
-  signalStrengh: signalStrengthValue,
+  signalStrength: signalStrength,
   connectedValue: connectedValue
 });

@@ -1,4 +1,4 @@
-import React, { component } from "react";
+import React from "react";
 import Phone from "./Phone.js";
 import SignalStrength from "./SignalStrength";
 
