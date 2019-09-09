@@ -24,6 +24,11 @@ class SignalStrength extends Component {
 
     if (this.props.connectedValue === 0) {
       //   console.log("HELLO");
+      return;
+    } else if (
+      this.props.connectedValue === 1 &&
+      this.props.signalStrength === null
+    ) {
       return <img className="offimage" src={OffImage} alt="off"></img>;
     } else {
       //   this.props.changeStrengthValue(Math.round(Math.random() * 5));
@@ -31,7 +36,7 @@ class SignalStrength extends Component {
         <img
           className="strengthimage"
           src={allImages[this.props.signalStrength]}
-          alt="0"
+          alt="strength"
         ></img>
       );
     }

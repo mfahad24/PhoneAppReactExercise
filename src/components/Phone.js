@@ -10,33 +10,60 @@ class Phone extends Component {
   //     // console.log(this.props);
   //     this.props.changeStrengthValue(1);
   //   };
-
-  callAllFunctions = props => {
-    // console.log("TEST", test);
+  // turnPhoneOff = props => {
+  //   props.turnPhoneOn();
+  //   props.changeStrength();
+  // }
+  turnPhoneOn = props => {
     props.changeConnectedValue(1);
-    props.changeStrengthValue(Math.round(Math.random() * 5));
+    props.changeStrengthValue(null);
+    console.log("CONNECTED?", this.props.connectedValue);
+    console.log("STRENGTH?", this.props.signalStrength);
+  };
+
+  turnPhoneOff = props => {
+    console.log(props);
+    props.changeConnectedValue(0);
+    props.changeStrengthValue(null);
+  };
+
+  changeStrength = props => {
+    // console.log("TEST", test);
+    // props.changeConnectedValue(1);
+    setInterval(function() {
+      props.changeStrengthValue(Math.round(Math.random() * 5));
+    }, 1500);
     // console.log("STRENGTHVALUE", this.props.strengthValue);
   };
 
   renderButton() {
     return (
-      <div>
+      <div className="buttondiv">
         {/* <img src={Image}></img> */}
         <button
-          className="ui button"
-          onClick={() => this.callAllFunctions(this.props)}
+          className="ui button blue"
+          disabled={this.props.connectedValue === 1}
+          onClick={() => this.turnPhoneOn(this.props)}
         >
           Turn On Phone
         </button>
         <button
-          className="ui button"
-          onClick={() => this.props.changeConnectedValue(0)}
+          className="ui button blue"
+          disabled={this.props.connectedValue === 0}
+          onClick={() => this.changeStrength(this.props)}
+        >
+          Disable Airplane Mode
+        </button>
+        <button
+          className="ui button blue"
+          disabled={this.props.connectedValue === 0}
+          onClick={() => this.turnPhoneOff(this.props)}
         >
           Turn Off Phone
         </button>
         <br />
         <br />
-        <hr />
+        {/* <hr /> */}
       </div>
     );
   }
