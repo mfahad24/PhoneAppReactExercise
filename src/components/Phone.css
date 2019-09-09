@@ -10,4 +10,23 @@
   margin-left: auto;
   margin-right: auto;
   width: 50%; */
+  top: 200px;
+  left: 200px;
+  position: absolute;
+}
+
+.offimage {
+  width: 200px;
+  top: 200px;
+  left: 200px;
+  position: absolute;
+}
+
+.phone {
+  position: absolute;
+}
+
+.phonecontainer {
+  position: relative;
+  float: left;
 }

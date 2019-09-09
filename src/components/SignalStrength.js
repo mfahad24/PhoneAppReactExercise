@@ -7,6 +7,7 @@ import TwoImage from "../images/2.png";
 import ThreeImage from "../images/3.png";
 import FourImage from "../images/4.png";
 import FiveImage from "../images/5.png";
+import PhoneImage from "../images/phone.png";
 import "./Phone.css";
 import { changeStrengthValue } from "../actions";
 
@@ -23,7 +24,7 @@ class SignalStrength extends Component {
 
     if (this.props.connectedValue === 0) {
       //   console.log("HELLO");
-      return <img className="strengthimage" src={OffImage} alt="off"></img>;
+      return <img className="offimage" src={OffImage} alt="off"></img>;
     } else {
       //   this.props.changeStrengthValue(Math.round(Math.random() * 5));
       return (
@@ -38,7 +39,12 @@ class SignalStrength extends Component {
 
   render() {
     console.log("STRENGTHVALUE IN SIGNALSTRENGTH", this.props.signalStrength);
-    return <div>{this.selectSignalStrengthImage()}</div>;
+    return (
+      <div className="phonecontainer">
+        <img className="phone" src={PhoneImage} alt="phone" />
+        {this.selectSignalStrengthImage()}
+      </div>
+    );
   }
 
   //   componentDidUpdate() {
