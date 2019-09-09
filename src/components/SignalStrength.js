@@ -23,7 +23,6 @@ class SignalStrength extends Component {
     ];
 
     if (this.props.connectedValue === 0) {
-      //   console.log("HELLO");
       return;
     } else if (
       this.props.connectedValue === 1 &&
@@ -31,7 +30,6 @@ class SignalStrength extends Component {
     ) {
       return <img className="offimage" src={OffImage} alt="off"></img>;
     } else {
-      //   this.props.changeStrengthValue(Math.round(Math.random() * 5));
       return (
         <img
           className="strengthimage"
@@ -45,18 +43,14 @@ class SignalStrength extends Component {
   render() {
     console.log("STRENGTHVALUE IN SIGNALSTRENGTH", this.props.signalStrength);
     return (
-      <div className="phonecontainer">
-        <img className="phone" src={PhoneImage} alt="phone" />
-        {this.selectSignalStrengthImage()}
+      <div className="signalstrengthdiv">
+        <div className="phonecontainer">
+          <img className="phone" src={PhoneImage} alt="phone" />
+          {this.selectSignalStrengthImage()}
+        </div>
       </div>
     );
   }
-
-  //   componentDidUpdate() {
-
-  //  console.log("STRENGTHVALUE", this.props.signalStrength);
-
-  //   }
 }
 
 const mapStateToProps = state => {

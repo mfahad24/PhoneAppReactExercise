@@ -2,18 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { changeConnectedValue, changeStrengthValue } from "../actions";
 import "./Phone.css";
-// import Image from "../images/phoneimage.jfif";
 
 class Phone extends Component {
-  //   randomizeStrengthValue = () => {
-  //     // console.log("HELLO");
-  //     // console.log(this.props);
-  //     this.props.changeStrengthValue(1);
-  //   };
-  // turnPhoneOff = props => {
-  //   props.turnPhoneOn();
-  //   props.changeStrength();
-  // }
   turnPhoneOn = props => {
     props.changeConnectedValue(1);
     props.changeStrengthValue(null);
@@ -22,24 +12,20 @@ class Phone extends Component {
   };
 
   turnPhoneOff = props => {
-    console.log(props);
     props.changeConnectedValue(0);
     props.changeStrengthValue(null);
+    clearInterval(props);
   };
 
   changeStrength = props => {
-    // console.log("TEST", test);
-    // props.changeConnectedValue(1);
     setInterval(function() {
       props.changeStrengthValue(Math.round(Math.random() * 5));
     }, 1500);
-    // console.log("STRENGTHVALUE", this.props.strengthValue);
   };
 
   renderButton() {
     return (
       <div className="buttondiv">
-        {/* <img src={Image}></img> */}
         <button
           className="ui button blue"
           disabled={this.props.connectedValue === 1}
@@ -63,7 +49,6 @@ class Phone extends Component {
         </button>
         <br />
         <br />
-        {/* <hr /> */}
       </div>
     );
   }

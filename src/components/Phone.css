@@ -5,11 +5,6 @@
 
 .strengthimage {
   width: 200px;
-  /* height: 50px; */
-  /* display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%; */
   top: 200px;
   left: 200px;
   position: absolute;
@@ -22,21 +17,17 @@
   position: absolute;
 }
 
-.phone {
-  position: absolute;
-}
-
 .phonecontainer {
-  /* display: flex;
-  justify-content: center; */
-  /* margin: 0 auto; */
-  /* text-align: center; */
   position: relative;
-  /* float: left; */
 }
 
 .buttondiv {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.signalstrengthdiv {
+  justify-content: center;
+  display: flex;
 }
