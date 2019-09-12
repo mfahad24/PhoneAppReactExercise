@@ -1,33 +1,23 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import Phone from "./Phone.js";
-import SignalStrength from "./SignalStrength";
+// import SignalStrength from "./SignalStrength";
+const SignalStrength = lazy(() => import("./SignalStrength"));
 
 const App = () => {
   return (
     <div>
       <Phone />
-      <SignalStrength />
+      <Suspense
+        fallback={
+          <div>
+            <h1 className="ui header blue loading">Loading your phone....</h1>
+          </div>
+        }
+      >
+        <SignalStrength />
+      </Suspense>
     </div>
   );
 };
 
 export default App;
-
-// import React, { lazy, Suspense } from "react";
-// import Phone from "./Phone.js";
-// import SignalStrength from "./SignalStrength";
-// const SignalStrengthTest = lazy(() => import("./SignalStrength"));
-
-// const App = () => {
-//   return (
-//     <Suspense fallback={<div>Loading..</div>}>
-//       <div>
-//         <Phone />
-//         <div>another component</div>
-//         <SignalStrengthTest />
-//       </div>
-//     </Suspense>
-//   );
-// };
-
-// export default App;

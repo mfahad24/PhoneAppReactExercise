@@ -42,7 +42,7 @@ class Phone extends Component {
           disabled={this.props.mqttClientBoolean === true}
           onClick={() => this.changeMqttBoolean(this.props)}
         >
-          Connect to MQTT
+          Connect HMI to MQTT
         </button>
 
         <button
