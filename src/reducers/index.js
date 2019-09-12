@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 import {
   CHANGE_CONNECTED_VALUE,
+  CHANGE_CONNECTED_VALUE_ASYNC,
   CHANGE_SIGNAL_STRENGTH,
-  CHANGE_MQTTBOOL_VALUE
+  CHANGE_MQTTBOOL_VALUE,
+  CHANGE_MQTTBOOL_VALUE_ASYNC
 } from "../constants";
 
 // const appPhone = () => {
@@ -25,7 +27,10 @@ const signalStrength = (signalStrength = null, action) => {
 };
 
 const connectedValue = (connectVal = 0, action) => {
-  if (action.type === CHANGE_CONNECTED_VALUE) {
+  if (
+    action.type === CHANGE_CONNECTED_VALUE ||
+    action.type === CHANGE_CONNECTED_VALUE_ASYNC
+  ) {
     // console.log("HELLO");
     return action.payload;
   } else {
@@ -35,7 +40,10 @@ const connectedValue = (connectVal = 0, action) => {
 };
 
 const mqttClientBoolean = (clientBoolean = false, action) => {
-  if (action.type === CHANGE_MQTTBOOL_VALUE) {
+  if (
+    action.type === CHANGE_MQTTBOOL_VALUE ||
+    action.type === CHANGE_MQTTBOOL_VALUE_ASYNC
+  ) {
     return action.payload;
   } else {
     return clientBoolean;
