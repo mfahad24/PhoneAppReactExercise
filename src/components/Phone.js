@@ -1,26 +1,37 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { changeConnectedValue, changeStrengthValue } from "../actions";
+import {
+  changeConnectedValue,
+  changeStrengthValue,
+  changeMqttBoolean
+} from "../actions";
 import "./Phone.css";
 
 class Phone extends Component {
   turnPhoneOn = props => {
     props.changeConnectedValue(1);
-    props.changeStrengthValue(null);
-    console.log("CONNECTED?", this.props.connectedValue);
-    console.log("STRENGTH?", this.props.signalStrength);
+    setInterval(function() {
+      props.changeStrengthValue(Math.round(Math.random() * 5));
+    }, 1500);
+    // props.changeStrengthValue(null);
+    // console.log("CONNECTED?", this.props.connectedValue);
+    // console.log("STRENGTH?", this.props.signalStrength);
   };
 
   turnPhoneOff = props => {
     props.changeConnectedValue(0);
     props.changeStrengthValue(null);
-    clearInterval(props);
+    // clearInterval(props);
   };
 
-  changeStrength = props => {
-    setInterval(function() {
-      props.changeStrengthValue(Math.round(Math.random() * 5));
-    }, 1500);
+  // changeStrength = props => {
+  //   setInterval(function() {
+  //     props.changeStrengthValue(Math.round(Math.random() * 5));
+  //   }, 1500);
+  // };
+
+  changeMqttBoolean = props => {
+    props.changeMqttBoolean(true);
   };
 
   renderButton() {
@@ -28,25 +39,31 @@ class Phone extends Component {
       <div className="buttondiv">
         <button
           className="ui button blue"
-          disabled={this.props.connectedValue === 1}
-          onClick={() => this.turnPhoneOn(this.props)}
+          disabled={this.props.mqttClientBoolean === true}
+          onClick={() => this.changeMqttBoolean(this.props)}
         >
-          Turn On Phone
+          Connect to MQTT
         </button>
+
         <button
           className="ui button blue"
-          disabled={this.props.connectedValue === 0}
-          onClick={() => this.changeStrength(this.props)}
+          disabled={
+            this.props.mqttClientBoolean === false ||
+            this.props.connectedValue === 1
+          }
+          onClick={() => this.turnPhoneOn(this.props)}
         >
-          Disable Airplane Mode
+          Conect Phone
         </button>
+
         <button
           className="ui button blue"
           disabled={this.props.connectedValue === 0}
           onClick={() => this.turnPhoneOff(this.props)}
         >
-          Turn Off Phone
+          Disconnect Phone
         </button>
+
         <br />
         <br />
       </div>
@@ -54,8 +71,9 @@ class Phone extends Component {
   }
 
   render() {
+    console.log("MQTTVALUE", this.props.mqttClientBoolean);
     console.log("CONNECTEDVALUE", this.props.connectedValue);
-    console.log("STRENGTHVALUE", this.props.signalStrength);
+    // console.log("STRENGTHVALUE", this.props.signalStrength);
     return <div className="buttondiv">{this.renderButton()}</div>;
   }
 }
@@ -63,7 +81,8 @@ class Phone extends Component {
 const mapStateToProps = state => {
   return {
     connectedValue: state.connectedValue,
-    signalStrength: state.signalStrength
+    signalStrength: state.signalStrength,
+    mqttClientBoolean: state.mqttClientBoolean
   };
 };
 
@@ -73,6 +92,7 @@ export default connect(
   mapStateToProps,
   {
     changeConnectedValue,
-    changeStrengthValue
+    changeStrengthValue,
+    changeMqttBoolean
   }
 )(Phone);

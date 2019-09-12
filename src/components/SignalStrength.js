@@ -41,7 +41,7 @@ class SignalStrength extends Component {
   }
 
   render() {
-    console.log("STRENGTHVALUE IN SIGNALSTRENGTH", this.props.signalStrength);
+    console.log("STRENGTHVALUE", this.props.signalStrength);
     return (
       <div className="signalstrengthdiv">
         <div className="phonecontainer">

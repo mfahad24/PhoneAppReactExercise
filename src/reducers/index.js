@@ -1,5 +1,9 @@
 import { combineReducers } from "redux";
-import { CHANGE_CONNECTED_VALUE, CHANGE_SIGNAL_STRENGTH } from "../constants";
+import {
+  CHANGE_CONNECTED_VALUE,
+  CHANGE_SIGNAL_STRENGTH,
+  CHANGE_MQTTBOOL_VALUE
+} from "../constants";
 
 // const appPhone = () => {
 //   return [
@@ -30,8 +34,17 @@ const connectedValue = (connectVal = 0, action) => {
   }
 };
 
+const mqttClientBoolean = (clientBoolean = false, action) => {
+  if (action.type === CHANGE_MQTTBOOL_VALUE) {
+    return action.payload;
+  } else {
+    return clientBoolean;
+  }
+};
+
 export default combineReducers({
   //   appPhone: appPhone,
   signalStrength: signalStrength,
-  connectedValue: connectedValue
+  connectedValue: connectedValue,
+  mqttClientBoolean: mqttClientBoolean
 });
